@@ -1,0 +1,24 @@
+{
+  "name": "vps-gateway",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "bnd": "npm run build && npm run deploy",
+    "bndd": "npm run build_debug && npm run deploy",
+    "build": "esbuild main.js --bundle --minify --platform=node --outfile=build/vps-gateway.js",
+    "build_debug": "esbuild main.js --bundle --platform=node --outfile=build/vps-gateway.js",
+    "deploy": "scp build/vps-gateway.js sergey@nucrea.online:~/apps/vps-gateway/vps-gateway.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-request-id": "^1.4.1",
+    "http-proxy-middleware": "^2.0.6",
+    "prom-client": "^14.0.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.14.50"
+  }
+}
