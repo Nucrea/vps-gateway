@@ -8,6 +8,7 @@ import { register, Counter, Gauge, collectDefaultMetrics } from 'prom-client';
 
 const GATEWAY_PORT = 4000;
 const METRICS_PORT = 4001;
+const BITWARDEN_PORT = 4002;
 const TBOT_DIR = '/home/sergey/apps/tbot-app';
 
 const GRAFANA_KEY = 'eyJrIjoieWFPZnFGMVdiMDVEek5HNXlIUTlIZVI0WFA5VUNnUUIiLCJuIjoiYWRtaW4iLCJpZCI6MX0=';
@@ -37,6 +38,13 @@ async function start() {
     app.use('/tbot', express.static(TBOT_DIR));
 
     app.use('/tbot-api/**', (req, res) => { res.sendStatus(501); });
+
+    app.use('/bitwarden/**', createProxyMiddleware({ 
+        target: 'http://localhost:4002',
+        changeOrigin: false,
+    }));
+
+    app.use('/bitwarden', (req, res) => { res.redirect('/bitwarden/'); });
 
     app.use('/grafana', createProxyMiddleware({ 
         target: 'http://localhost:3000',
