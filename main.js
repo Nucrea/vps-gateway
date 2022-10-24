@@ -11,8 +11,6 @@ const METRICS_PORT = 4001;
 const BITWARDEN_PORT = 4002;
 const TBOT_DIR = '/home/sergey/apps/tbot-app';
 
-const GRAFANA_KEY = 'eyJrIjoieWFPZnFGMVdiMDVEek5HNXlIUTlIZVI0WFA5VUNnUUIiLCJuIjoiYWRtaW4iLCJpZCI6MX0=';
-
 
 const requestsActiveMetric = new Gauge({
     name: 'gateway_connections_active',
@@ -37,28 +35,6 @@ async function start() {
 
     server.listen(GATEWAY_PORT);
     console.log(`Gateway server listening to ${GATEWAY_PORT}`);
-
-    // app.listen(GATEWAY_PORT, () => 
-    //     console.log(`Gateway server listening to ${GATEWAY_PORT}`));
-
-    // app.use('*', (req, res) => { res.send('<p>keks!</p>'); });
-
-    // http.createServer((req, res) => {
-    //     console.log(`Request: ${req.headers.host},  ${req.url}`);
-    //     switch(req.headers.host) {
-    //         case 'nucrea.online':
-    //         case 'www.nucrea.online':
-    //             app(req, res);
-    //             break;
-    //         // case 'tbot.nucrea.online':
-    //         // case 'www.tbot.nucrea.online':
-    //         //     appTbot(req, res);
-    //         //     break;
-    //         default:
-    //             // res.sendStatus(504);
-    //             res.
-    //     }
-    // }).listen(GATEWAY_PORT);
 }
 
 
